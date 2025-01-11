@@ -1,0 +1,31 @@
+services:
+  super-app:
+    build: .
+    ports:
+      - '5000:3000'
+    volumes:
+      - .:/auth-project
+    command: pnpm run dev
+    env_file:
+      - .env
+    depends_on:
+      - mongo-db
+    networks:
+      - super-net
+    restart: always
+
+  mongo-db:
+    image: mongo:latest
+    ports:
+      - '27019:27017'
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - super-net
+    restart: always
+
+networks:
+  super-net:
+    driver: bridge
+volumes:
+  mongo-data:
