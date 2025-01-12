@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   super-app:
     build: .
@@ -8,7 +7,7 @@ services:
       - .:/auth-project
     command: pnpm run dev
     environment:
-      - MONGO_URI=mongodb+srv://ismoil:muhiddinovismoil@mongodb-demo.oo2yq.mongodb.net/swagger
+      - MONGO_URI=mongodb://mongo-db:27017/swagger
     env_file:
       - .env
     depends_on:
@@ -20,21 +19,15 @@ services:
   mongo-db:
     image: mongo:latest
     ports:
-      - '27019:27017'
+      - '27017:27017'
     volumes:
       - mongo-data:/data/db
     networks:
       - super-net
     restart: always
-    healthcheck:
-      test: ['CMD', 'mongosh', '--eval', "db.adminCommand('ping')"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
 networks:
   super-net:
     driver: bridge
-
 volumes:
   mongo-data:
