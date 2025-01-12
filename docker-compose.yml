@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   super-app:
     build: .
@@ -25,9 +26,15 @@ services:
     networks:
       - super-net
     restart: always
+    healthcheck:
+      test: ['CMD', 'mongosh', '--eval', "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
   super-net:
     driver: bridge
+
 volumes:
   mongo-data:
