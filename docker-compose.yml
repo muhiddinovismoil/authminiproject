@@ -8,7 +8,7 @@ services:
       - .:/auth-project
     command: pnpm run dev
     environment:
-      - MONGO_URI=mongodb://mongo-db:27017/swagger
+      - MONGO_URI=mongodb+srv://ismoil:muhiddinovismoil@mongodb-demo.oo2yq.mongodb.net/swagger
     env_file:
       - .env
     depends_on:
