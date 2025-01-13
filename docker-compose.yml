@@ -5,6 +5,7 @@ services:
       - '5000:3000'
     volumes:
       - .:/auth-project
+      - /auth-project/node_modules
     command: pnpm run dev
     environment:
       - MONGO_URI=mongodb://mongo-db:27017/swagger
