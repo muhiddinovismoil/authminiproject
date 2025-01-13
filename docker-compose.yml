@@ -12,22 +12,15 @@ services:
       - .env
     depends_on:
       - mongo-db
-    networks:
-      - super-net
     restart: always
 
   mongo-db:
     image: mongo:latest
     ports:
-      - '27017:27017'
+      - '27018:27017'
     volumes:
       - mongo-data:/data/db
-    networks:
-      - super-net
     restart: always
 
-networks:
-  super-net:
-    driver: bridge
 volumes:
   mongo-data:
