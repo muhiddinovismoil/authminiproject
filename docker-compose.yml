@@ -7,7 +7,7 @@ services:
       - .:/auth-project
     command: pnpm run dev
     environment:
-      - MONGO_URI=mongodb://mongo-db:27017/swagger
+      - MONGO_URI=mongodb://localhost:27017/swagger
     env_file:
       - .env
     depends_on:
@@ -17,7 +17,7 @@ services:
   mongo-db:
     image: mongo:latest
     ports:
-      - '27018:27017'
+      - '27019:27017'
     volumes:
       - mongo-data:/data/db
     restart: always
